@@ -53,7 +53,7 @@ def adjacency_matrix_to_edge_list(adjacency_matrix):
     edge_list = []
     for i in range(len(adjacency_matrix)):
         for j in range(len(adjacency_matrix[0])):
-            if adjacency_matrix[i][j] == 1:
+            if adjacency_matrix[i][j] != 'x':
                 edge_list.append((i, j))
     return edge_list
 

@@ -45,6 +45,22 @@ class Solver:
 
         for vertexData in self.groupDict:
 
+            group = list(self.groupDict[vertexData].keys())[0]
+            costArray = [self.get_dist(vertexData, x) for x in group]
+            earlyCost = self.groupDict[vertexData][group]
+            i = 0
+
+            while i != 0 and len(costArray):
+                index = costArray.index(max(costArray))
+                temp = [x for x in group]
+                temp.remove(max(temp))
+                group = tuple(temp)
+                earlyCost -= costArray[index]
+                costArray[index] = 0
+                self.groupDict[vertexData][group] = earlyCost
+                i -= 1
+
+
             for setThing in self.groupDict[vertexData]:
                 # print(vertexData) # Vertex to drop off at
                 # print(setThing) # People to drop off
@@ -62,17 +78,25 @@ class Solver:
         maxVertex = vertexSetWeights.index(maxVal) # Vertex associated with this ratio
 
         dropOffDict[maxVertex] = vertexSetGroups[maxVertex] # Store who is dropped off where
+        
 
-        for elem in vertexSetGroups[maxVertex]: # Update toDropOff
-            toDropOff.remove(elem)
+        if vertexSetGroups[maxVertex] != 0:
+
+            for elem in vertexSetGroups[maxVertex]: # Update toDropOff
+                toDropOff.remove(elem)
 
         # Assign most optimal tuple to dropoff vertex
         # Get weight of max vertex
-        maxVertexWeight = self.groupDict[maxVertex][vertexSetGroups[maxVertex]]
-        
-        # Update vertexSetWeights
-        while len(toDropOff) != 0:
+        # print(maxVertex)
+        # print(vertexSetGroups)
+        # print(self.groupDict)
 
+
+        # Update vertexSetWeights
+        switch = 5
+        lastToDropOff = 0
+        while len(toDropOff) > 0 and switch:
+            # print(toDropOff)
             # UPDATE VERTEX SET WEIGHTS     
             for i in range(len(vertexSetWeights)):
                 if vertexSetGroups[i] != 0:
@@ -88,6 +112,7 @@ class Solver:
                         # print(vertexSetWeights[i])
 
 
+
             # print(vertexSetGroups)
             # print(vertexSetWeights)
             # print(toDropOff)
@@ -101,6 +126,17 @@ class Solver:
                 for elem in vertexSetGroups[maxVertex]: # Update toDropOff
                     toDropOff.remove(elem)
 
+
+            if toDropOff == lastToDropOff:
+                switch -= 1
+                
+            lastToDropOff = toDropOff
+
+        # print(dropOffDict)
+        if len(toDropOff):
+            for i in range(len(toDropOff)):
+                dropOffDict[toDropOff[i]] = (toDropOff[i],)
+            dropOffDict[0] = (0,)
         # print(toDropOff)
         # WHILE LOOP FOR PATH
         # print(dropOffDict)
@@ -139,8 +175,6 @@ class Solver:
         # print(min(costs))
         # print(costs.index(min(costs)))
 
-        print(paths)
-        print(costs)
         return paths[costs.index(min(costs))], dropOffDict
 
 
@@ -215,7 +249,7 @@ class Solver:
 
         thresh = self.threshDict[end]
         start_end_dist = self.get_dist(start, end)
-        return start_end_dist < thresh
+        return start_end_dist < (thresh) / 1
 
 
 def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_matrix, params=[]):
@@ -241,7 +275,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
 
     path = [solver.get_graph_node(solver.starting_car_location)] + path + [solver.get_graph_node(solver.starting_car_location)]
 
-    print(path)
+    # print(path)
 
 
     # DROPOFF PATH VALID
@@ -250,31 +284,13 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
         newPath += nx.dijkstra_path(solver.graph, path[i], path[i + 1])[:-1]
 
     newPath.append(newPath[0])
-    print(newPath)
-
+    # print(newPath)
+    print(dropOffs)
     print(cost_of_solution(solver.graph, newPath, dropOffs))
 
 
 
     return newPath, dropOffs
-
-    # print(solver.list_of_locations)
-    # print(solver.list_of_homes)
-    # print(solver.starting_car_location)
-    # print(solver.adjacency_matrix)
-    # print(solver.params)
-    # print(solver.graph)
-    # print(solver.dijkstraData)
-    # print(solver.threshDict)
-    ## SODA HALL IS ALWAYS NODE 0
-
-
-
-    pass
-
-
-
-
 
 
 def get_graph_node(name, list_of_locations):
@@ -299,8 +315,7 @@ def group_homes_at_vertices(graph, list_of_homes, thresh_dict):
         return False
 
 
-def group_homes_at_node(node, list_of_homes, thresh_dict, graph):
-    print("cat")
+
 
 def bfs_with_limit(start, list_of_targets, threshold, graph, adjacency_matrix):
     
@@ -365,12 +380,12 @@ def get_shortest_paths(graph):
 
         closest_dists.append(vert)
 
-    print(closest_dists)
+    # print(closest_dists)
 
     for elem in closest_dists:
         most_used_dict[elem] = most_used_dict[elem] + 1
 
-    print(most_used_dict)
+    # print(most_used_dict)
 
 
 """
