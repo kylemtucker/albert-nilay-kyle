@@ -1,8 +1,12 @@
-stop0 stop124 stop133 stop9 stop22 stop130 stop144 stop148 stop159 stop68 stop197 stop180 stop80 stop41 stop139 stop15 stop34 stop14 stop42 stop3 stop112 stop101 stop23 stop142 stop176 stop70 stop135 stop38 stop137 stop16 stop163 stop7 stop13 stop158 stop17 stop128 stop183 stop51 stop105 stop89 stop191 stop199 stop35 stop65 stop100 stop96 stop102 stop77 stop72 stop138 stop182 stop4 stop25 stop60 stop73 stop155 stop40 stop109 stop162 stop58 stop2 stop88 stop92 stop21 stop39 stop31 stop192 stop145 stop122 stop181 stop69 stop1 stop64 stop8 stop55 stop1 stop0
-74
+stop0 stop124 stop73 stop9 stop72 stop15 stop144 stop130 stop22 stop133 stop55 stop100 stop41 stop148 stop159 stop197 stop180 stop80 stop101 stop139 stop34 stop14 stop42 stop3 stop137 stop38 stop135 stop23 stop142 stop176 stop70 stop16 stop163 stop7 stop13 stop158 stop17 stop128 stop183 stop51 stop105 stop89 stop191 stop199 stop35 stop65 stop25 stop96 stop102 stop77 stop155 stop40 stop4 stop182 stop138 stop109 stop58 stop2 stop88 stop92 stop122 stop145 stop39 stop31 stop8 stop64 stop1 stop0
+66
 stop124 stop123 stop126 stop156 stop84 stop186 stop172 stop189 stop171 stop166 stop74 stop153 stop124 stop195 stop81
 stop130 stop147 stop18 stop187 stop106 stop90 stop150 stop33 stop130 stop62
 stop9 stop54 stop44 stop114 stop9 stop194 stop167
+stop55 stop162 stop21 stop192 stop55
+stop73 stop112 stop73 stop60
+stop72 stop68 stop72 stop69
+stop100 stop100 stop181
 stop144 stop144
 stop0 stop0
 stop133 stop133
@@ -10,7 +14,6 @@ stop180 stop180
 stop22 stop22
 stop148 stop148
 stop159 stop159
-stop68 stop68
 stop80 stop80
 stop15 stop15
 stop139 stop139
@@ -25,7 +28,6 @@ stop42 stop42
 stop142 stop142
 stop135 stop135
 stop3 stop3
-stop112 stop112
 stop176 stop176
 stop70 stop70
 stop137 stop137
@@ -47,30 +49,20 @@ stop35 stop35
 stop199 stop199
 stop96 stop96
 stop138 stop138
-stop100 stop100
 stop77 stop77
-stop72 stop72
 stop155 stop155
 stop4 stop4
 stop182 stop182
 stop25 stop25
-stop73 stop73
 stop40 stop40
-stop60 stop60
 stop109 stop109
-stop162 stop162
 stop58 stop58
 stop2 stop2
 stop31 stop31
 stop145 stop145
-stop21 stop21
 stop88 stop88
 stop92 stop92
 stop122 stop122
 stop39 stop39
-stop181 stop181
-stop69 stop69
-stop192 stop192
 stop64 stop64
-stop55 stop55
 stop8 stop8
