@@ -136,12 +136,21 @@ class Solver:
         if len(toDropOff):
             for i in range(len(toDropOff)):
                 dropOffDict[toDropOff[i]] = (toDropOff[i],)
-            dropOffDict[0] = (0,)
+
+        removeArray = []
+        for elem in dropOffDict:
+            if isinstance(dropOffDict[elem], int):
+                if self.list_of_locations[elem] in self.list_of_homes:
+                    dropOffDict[elem] = (elem,)
+                else:
+                    removeArray.append(elem)
+
+        for removal in removeArray:
+            dropOffDict.pop(removal)
         # print(toDropOff)
         # WHILE LOOP FOR PATH
         # print(dropOffDict)
         # Find next optimal set based on ratio. Save this vertex, update our vertexSetWeights
-
 
 
         return dropOffDict
@@ -283,10 +292,9 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
     for i in range(len(path) - 1):
         newPath += nx.dijkstra_path(solver.graph, path[i], path[i + 1])[:-1]
 
+
     newPath.append(newPath[0])
-    # print(newPath)
-    print(dropOffs)
-    print(cost_of_solution(solver.graph, newPath, dropOffs))
+
 
 
 
